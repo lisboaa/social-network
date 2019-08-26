@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::post('/singup', [
+        'uses' => 'UserController@postSingUp',
+        'as' => 'singup'
+    ]);
 });
